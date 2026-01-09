@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Everyday Omelette — Swiss One-Page Recipe</title>
+  <meta name="description" content="A Swiss-minimal one-page omelette recipe with a 1-minute timer." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#about">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand" aria-label="Site title">
+        <span class="brand-title">Everyday Omelette</span>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#ingredients">Ingredients</a>
+        <a href="#cooking">Cooking</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ABOUT -->
+    <section id="about" class="section" aria-labelledby="about-title">
+      <div class="section-grid">
+        <div class="section-copy">
+          <h1 id="about-title">Omelette, done right.</h1>
+          <p class="lead">
+            Soft, buttery, and fast. This is the “no drama” omelette: gentle heat, minimal stirring,
+            clean finish.
+          </p>
+
+          <dl class="meta" aria-label="Recipe highlights">
+            <div>
+              <dt>Time</dt>
+              <dd>5–7 min</dd>
+            </div>
+            <div>
+              <dt>Difficulty</dt>
+              <dd>Easy</dd>
+            </div>
+            <div>
+              <dt>Serves</dt>
+              <dd>1</dd>
+            </div>
+          </dl>
+
+          <p class="note">
+            Tip: the secret is low heat. High heat makes eggs rubbery and your ego fragile.
+          </p>
+        </div>
+
+        <figure class="section-media about-media">
+          <img src="omelet.jpg" alt="A minimal, plated omelette on a white plate." />
+          <figcaption>Soft set eggs, clean fold, no browning.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- INGREDIENTS -->
+    <section id="ingredients" class="section" aria-labelledby="ingredients-title">
+      <div class="section-grid reverse">
+        <div class="section-copy">
+          <h2 id="ingredients-title">Ingredients</h2>
+
+          <ul class="list">
+            <li><span class="qty">2</span> large eggs</li>
+            <li><span class="qty">1 tbsp</span> milk or water (optional, for softness)</li>
+            <li><span class="qty">1 tbsp</span> butter</li>
+            <li><span class="qty">1 pinch</span> salt</li>
+            <li><span class="qty">1 pinch</span> black pepper</li>
+            <li><span class="qty">30 g</span> cheese (optional)</li>
+            <li><span class="qty">1 handful</span> herbs (chives / parsley, optional)</li>
+          </ul>
+
+          <div class="callout" role="note" aria-label="Ingredient note">
+            <strong>Minimal rule:</strong> butter + eggs + salt is already a complete recipe.
+          </div>
+        </div>
+
+        <figure class="section-media">
+          <img src="ingredients.jpg" alt="Eggs, butter, salt, pepper, and herbs arranged on a countertop." />
+          <figcaption>Keep it simple, keep it precise.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- COOKING -->
+    <section id="cooking" class="section" aria-labelledby="cooking-title">
+      <div class="section-grid">
+        <div class="section-copy">
+          <h2 id="cooking-title">Cooking</h2>
+
+          <ol class="steps">
+            <li><strong>Beat</strong> eggs with salt (and a splash of milk/water if using) until smooth.</li>
+            <li><strong>Warm</strong> a nonstick pan on low to medium-low. Add butter.</li>
+            <li><strong>Pour</strong> eggs in. Stir gently with a spatula until soft curds form.</li>
+            <li><strong>Shape</strong> into an oval. Add cheese/herbs (optional). Fold.</li>
+            <li><strong>Finish</strong> when still slightly glossy. Residual heat will set the rest.</li>
+          </ol>
+
+          <div class="timer-row">
+            <button id="startTimerBtn" class="btn" type="button">
+              Start 1-minute timer
+            </button>
+            <p class="tiny" id="timerHint">
+              Opens a modal countdown. Press <kbd>Esc</kbd> to close.
+            </p>
+          </div>
+        </div>
+
+        <figure class="section-media">
+          <img src="cooking.jpg" alt="Omelette cooking in a pan with a spatula." />
+          <figcaption>Low heat. Gentle motion. Confidence.</figcaption>
+        </figure>
+      </div>
+
+      <figure class="served">
+        <img src="served.jpg" alt="Finished omelette served on a plate, ready to eat." />
+      </figure>
+    </section>
+  </main>
+
+  <!-- MODAL -->
+  <div id="timerOverlay"
+       class="overlay"
+       hidden
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="timerTitle"
+       aria-describedby="timerDesc">
+    <div class="modal" role="document">
+      <div class="modal-fill" id="modalFill" aria-hidden="true"></div>
+
+      <div class="modal-header">
+        <h3 id="timerTitle">1-minute timer</h3>
+        <button id="closeTimerBtn" class="btn btn-ghost" type="button" aria-label="Close timer dialog">
+          Close
+        </button>
+      </div>
+
+      <p id="timerDesc" class="modal-desc">
+        Countdown with full-modal fill. Beep plays at the end.
+      </p>
+
+      <div class="timer-panel" aria-label="Timer status">
+        <div class="timer-text" id="timerText" aria-live="polite">01:00</div>
+      </div>
+
+      <div class="modal-actions">
+        <button id="restartTimerBtn" class="btn btn-ghost" type="button">
+          Restart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Polina Katkova — HTML, CSS, JavaScript</span>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', id);
+      });
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Nav click behavior: turn link black + apply "hover" weight
+    const navLinks = document.querySelectorAll('.nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.forEach(a => a.classList.remove('is-active'));
+        link.classList.add('is-active');
+      });
+    });
+
+    // Timer modal logic (no auto-open)
+    const overlay = document.getElementById('timerOverlay');
+    const startBtn = document.getElementById('startTimerBtn');
+    const closeBtn = document.getElementById('closeTimerBtn');
+    const restartBtn = document.getElementById('restartTimerBtn');
+    const timerText = document.getElementById('timerText');
+    const modalFill = document.getElementById('modalFill');
+
+    const DURATION_MS = 60_000;
+    let startTime = 0;
+    let rafId = null;
+    let lastFocus = null;
+    let audioCtx = null;
+    let keyListenerActive = false;
+
+    function formatMMSS(msRemaining) {
+      const totalSeconds = Math.max(0, Math.ceil(msRemaining / 1000));
+      const mm = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+      const ss = String(totalSeconds % 60).padStart(2, '0');
+      return `${mm}:${ss}`;
+    }
+
+    function ensureAudioContext() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function beep() {
+      if (!audioCtx) return;
+      const now = audioCtx.currentTime;
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(880, now);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.18, now + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.2);
+    }
+
+    function onKeyDown(e) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeModal();
+      }
+    }
+
+    function openModal() {
+      lastFocus = document.activeElement;
+      overlay.hidden = false;
+      document.body.classList.add('no-scroll');
+      closeBtn.focus();
+
+      if (!keyListenerActive) {
+        window.addEventListener('keydown', onKeyDown);
+        keyListenerActive = true;
+      }
+    }
+
+    function closeModal() {
+      stopTimer();
+      overlay.hidden = true;
+      document.body.classList.remove('no-scroll');
+
+      if (keyListenerActive) {
+        window.removeEventListener('keydown', onKeyDown);
+        keyListenerActive = false;
+      }
+
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    function resetUI() {
+      timerText.textContent = '01:00';
+      modalFill.style.height = '0%';
+      modalFill.classList.remove('is-done');
+    }
+
+    function stopTimer() {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+
+    function finishUI() {
+      timerText.textContent = 'Omelette is ready!';
+      modalFill.style.height = '100%';
+      modalFill.classList.add('is-done');
+      stopTimer();
+      beep();
+    }
+
+    function tick() {
+      const elapsed = performance.now() - startTime;
+      const remaining = Math.max(0, DURATION_MS - elapsed);
+      const progress = Math.min(1, elapsed / DURATION_MS);
+
+      modalFill.style.height = `${progress * 100}%`;
+
+      if (remaining <= 0) {
+        finishUI();
+        return;
+      }
+
+      timerText.textContent = formatMMSS(remaining);
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function startTimer() {
+      ensureAudioContext();
+      resetUI();
+      stopTimer();
+      startTime = performance.now();
+      rafId = requestAnimationFrame(tick);
+    }
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    startBtn.addEventListener('click', () => {
+      openModal();
+      startTimer();
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    restartBtn.addEventListener('click', () => {
+      startTimer();
+      closeBtn.focus();
+    });
+
+    resetUI();
+  </script>
+</body>
+</html>
