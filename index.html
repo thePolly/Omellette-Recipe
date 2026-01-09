@@ -28,14 +28,10 @@
   <main class="container">
     <!-- ABOUT -->
     <section id="about" class="section" aria-labelledby="about-title">
-      <div class="section-grid">
+      <div class="section-about">
         <div class="section-copy">
-          <h1 id="about-title">Omelette, done right.</h1>
-          <p class="lead">
-            Soft, buttery, and fast. This is the “no drama” omelette: gentle heat, minimal stirring,
-            clean finish.
-          </p>
-
+          <h2 id="about-title">Omelette recipe.</h1>
+    <hr class="divider" />
           <dl class="meta" aria-label="Recipe highlights">
             <div>
               <dt>Time</dt>
@@ -50,16 +46,17 @@
               <dd>1</dd>
             </div>
           </dl>
-
-          <p class="note">
-            Tip: the secret is low heat. High heat makes eggs rubbery and your ego fragile.
+    <hr class="divider" />
+      <figure class="section-media about-media">
+          <img src="omelet.jpg" alt="A minimal, plated omelette on a white plate." />
+        </figure>
+          <p class="lead">
+            Soft, buttery, and fast. This is the “no drama” omelette: gentle heat, minimal stirring,
+            clean finish.
           </p>
         </div>
 
-        <figure class="section-media about-media">
-          <img src="omelet.jpg" alt="A minimal, plated omelette on a white plate." />
-          <figcaption>Soft set eggs, clean fold, no browning.</figcaption>
-        </figure>
+  
       </div>
     </section>
 
@@ -80,15 +77,10 @@
             <li><span class="qty">30 g</span> cheese (optional)</li>
             <li><span class="qty">1 handful</span> herbs (chives / parsley, optional)</li>
           </ul>
-
-          <div class="callout" role="note" aria-label="Ingredient note">
-            <strong>Minimal rule:</strong> butter + eggs + salt is already a complete recipe.
-          </div>
         </div>
 
         <figure class="section-media">
           <img src="ingredients.jpg" alt="Eggs, butter, salt, pepper, and herbs arranged on a countertop." />
-          <figcaption>Keep it simple, keep it precise.</figcaption>
         </figure>
       </div>
     </section>
@@ -113,15 +105,11 @@
             <button id="startTimerBtn" class="btn" type="button">
               Start 1-minute timer
             </button>
-            <p class="tiny" id="timerHint">
-              Opens a modal countdown. Press <kbd>Esc</kbd> to close.
-            </p>
           </div>
         </div>
 
         <figure class="section-media">
           <img src="cooking.jpg" alt="Omelette cooking in a pan with a spatula." />
-          <figcaption>Low heat. Gentle motion. Confidence.</figcaption>
         </figure>
       </div>
 
@@ -143,24 +131,21 @@
       <div class="modal-fill" id="modalFill" aria-hidden="true"></div>
 
       <div class="modal-header">
-        <h3 id="timerTitle">1-minute timer</h3>
-        <button id="closeTimerBtn" class="btn btn-ghost" type="button" aria-label="Close timer dialog">
-          Close
-        </button>
+        <h3 id="timerTitle">Omelette Timer</h3>
       </div>
 
-      <p id="timerDesc" class="modal-desc">
-        Countdown with full-modal fill. Beep plays at the end.
-      </p>
 
       <div class="timer-panel" aria-label="Timer status">
         <div class="timer-text" id="timerText" aria-live="polite">01:00</div>
       </div>
 
       <div class="modal-actions">
-        <button id="restartTimerBtn" class="btn btn-ghost" type="button">
+        <button id="restartTimerBtn" class="btn btn-white" type="button">
           Restart
         </button>
+     <button id="closeTimerBtn" class="btn btn-white" type="button" aria-label="Close timer dialog">
+          Close
+      </button>
       </div>
     </div>
   </div>
@@ -172,29 +157,32 @@
   </footer>
 
   <script>
-    // Smooth scroll
+
+	document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll with sticky-header offset (responsive)
+    function getHeaderOffset() {
+      const header = document.querySelector('.site-header');
+      if (!header) return 0;
+      const styles = window.getComputedStyle(header);
+      // include border-bottom in the offset
+      return header.offsetHeight + parseFloat(styles.borderBottomWidth || '0');
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
         const id = a.getAttribute('href');
         const target = document.querySelector(id);
         if (!target) return;
+
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const y = target.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset() - 8;
+        window.scrollTo({ top: y, behavior: 'smooth' });
         history.replaceState(null, '', id);
       });
     });
 
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Nav click behavior: turn link black + apply "hover" weight
-    const navLinks = document.querySelectorAll('.nav a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.forEach(a => a.classList.remove('is-active'));
-        link.classList.add('is-active');
-      });
-    });
 
     // Timer modal logic (no auto-open)
     const overlay = document.getElementById('timerOverlay');
