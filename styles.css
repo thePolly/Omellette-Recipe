@@ -3,7 +3,7 @@
   --text: #0b0b0b;
   --muted: #6a6a6a;
   --line: #e6e6e6;
-  --accent: #f2c300; /* yolk yellow */
+  --accent: #f2c300; 
   --shadow: 0 10px 30px rgba(0,0,0,.08);
   --radius: 14px;
   --max: 1040px;
@@ -47,7 +47,7 @@ img{
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255,255,255,.88);
+  background: rgba(249 228 147 / 60%);
   backdrop-filter: blur(10px);
 }
 
@@ -56,8 +56,8 @@ img{
   flex-direction: column;  /* nav below title */
   align-items: center;     /* CENTER title + nav */
   justify-content: flex-start;
-  padding: 14px 0;
-  gap: 1rem;
+  padding: 20px 0;
+  gap: 1.5rem;
   text-align: center;
 }
 
@@ -84,15 +84,16 @@ img{
 
 .nav{
   display: flex;
-  gap: 18px;
+  gap: 24px;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 1rem, 1rem;
 }
 
 .nav a{
   color: var(--text);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
   padding: 0;                 /* no pill padding look */
   border-radius: 0;
   border: none;
@@ -133,7 +134,7 @@ img{
 
 .section-copy h1,
 .section-copy h2{
-  margin: 0 0 10px;
+  margin: 0 0 2.5rem;
   letter-spacing: -0.2px;
 }
 .section-copy h1{ font-size: clamp(28px, 4vw, 44px); line-height: 1.1; }
@@ -146,11 +147,15 @@ img{
   max-width: 62ch;
 }
 
+.meta-section {
+  margin: 2rem;
+}
+
 .meta{
   width: 50%;
   margin: 0.5rem auto;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   justify-items: center;               /* center each meta item */
   text-align: center;                  /* center text inside */
   gap: 12px;
@@ -162,7 +167,7 @@ img{
 }
 .meta dd{
   margin: 2px 0 0;
-  font-weight: 650;
+  font-weight: 550;
 }
 
 .note{
@@ -178,6 +183,24 @@ img{
   color: var(--muted);
 }
 
+.ingredients-panel{
+  background: #f6f6f6;
+  padding: 12px;
+  margin: 0rem 3rem;
+  border-radius: 12px;
+}
+
+/* Same spacing for both subtitles */
+.ingredients-subtitle{
+  margin: 14px 0 10px;   /* consistent for Essential + Optional */
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.ingredients-panel .ingredients-subtitle:first-child{
+  margin-top: 0;         /* avoid extra space at panel top */
+}
+
 .divider{
   border: 0;
   border-top: 1px solid var(--line);
@@ -189,10 +212,10 @@ img{
   padding: 0;
   margin: 4px 0 0;
   display: grid;
-  gap: 10px;
+  gap: 3px;
 }
 .list li{
-  padding: 6px 12px;
+  padding: 4px 20px 4px 2rem;
   background: #fff;
   display: flex;
   gap: 2rem;
@@ -225,11 +248,23 @@ img{
   margin: 14px 0 0 18px;
   padding: 0;
   display: grid;
-  gap: 10px;
+  gap: 1rem;
 }
 .steps li{
   padding-left: 4px;
   max-width: 70ch;
+}
+
+.step-title{
+  display: block;
+  font-weight: 700;
+}
+
+.step-desc{
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .timer-row{
@@ -238,13 +273,18 @@ img{
   gap: 10px;
 }
 
+/* Gap between cooking images */
+#cooking .section-media img + img{
+  margin-top: 1rem;
+}
+
 .btn{
   appearance: none;
   border: 1px solid #111;
   background: #111;
   color: #fff;
   border-radius: 999px;
-  padding: 12px 14px;
+  padding: 24px 28px;
   font-weight: 650;
   font-size: 14px;
   cursor: pointer;
@@ -306,8 +346,14 @@ kbd{
   margin: 1rem;
 }
 .about-media img{
-  width: min(600px, 100%);
+  width: min(900px, 100%);
 }
+
+/* Ingredients: center the image vertically within its column */
+#ingredients .section-grid{
+  align-items: center;
+}
+
 
 
 /* MODAL */
@@ -436,14 +482,20 @@ kbd{
     grid-template-columns: 1fr;
   }
   .meta{
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  
+  .ingredients-panel{
+
+  margin: 0rem 0rem;
+
+}
 }
 
 @media (max-width: 520px){
   .container{ width: calc(100% - 28px); }
   .nav{ gap: 12px; }
-  .meta{ grid-template-columns: 1fr; }
+
   .timer-text{ font-size: 34px; }
 }
 
