@@ -24,7 +24,7 @@ body{
 img{
   max-width: 100%;
   display: block;
-  border-radius: 12px;
+  border-radius: 4px;
 }
 
 .container{
@@ -187,17 +187,26 @@ img{
 .list{
   list-style: none;
   padding: 0;
-  margin: 14px 0 0;
+  margin: 4px 0 0;
   display: grid;
   gap: 10px;
 }
 .list li{
-  padding: 10px 12px;
+  padding: 6px 12px;
   background: #fff;
   display: flex;
-  gap: 10px;
+  gap: 2rem;
   align-items: baseline;
 }
+
+.ingredients-subtitle{
+  margin: 16px 0 6px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: var(--muted);
+}
+
 .qty{
   min-width: 72px;
   font-weight: 700;
@@ -297,11 +306,9 @@ kbd{
   margin: 1rem;
 }
 .about-media img{
-  width: min(440px, 100%);
+  width: min(600px, 100%);
 }
-.about-media figcaption{
-  max-width: 52ch;
-}
+
 
 /* MODAL */
 .overlay{
