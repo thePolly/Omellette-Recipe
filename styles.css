@@ -183,18 +183,7 @@ img{
 }
 
 
-.note{
-  margin: 10px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
 .section-media{ margin: 0; }
-.section-media figcaption{
-  margin-top: 10px;
-  font-size: 13px;
-  color: var(--muted);
-}
 
 .ingredients-panel{
   background: #f6f6f6;
@@ -203,13 +192,7 @@ img{
   border-radius: 12px;
 }
 
-/* Same spacing for both subtitles */
-.ingredients-subtitle{
-  margin: 14px 0 10px;   /* consistent for Essential + Optional */
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-}
+
 .ingredients-panel .ingredients-subtitle:first-child{
   margin-top: 0;         /* avoid extra space at panel top */
 }
@@ -248,14 +231,6 @@ img{
   font-weight: 700;
   color: #1a1a1a;
 }
-.callout{
-  margin-top: 14px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(242,195,0,.35);
-  background: rgba(242,195,0,.12);
-  color: #111;
-}
 
 .steps{
   padding: 0;
@@ -279,12 +254,6 @@ img{
   font-size: 14px;
 }
 
-.timer-row{
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 
 
@@ -306,30 +275,6 @@ img{
 .btn:focus-visible{
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-}
-.btn-ghost{
-  background: transparent;
-  color: #111;
-}
-
-.tiny{
-  margin: 0;
-  font-size: 13px;
-  color: var(--muted);
-}
-kbd{
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 12px;
-  border: 1px solid var(--line);
-  background: #fafafa;
-  padding: 2px 6px;
-  border-radius: 8px;
-}
-
-.served{ margin: 26px 0 0; }
-.served img{
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
 }
 
 .footer{
@@ -375,24 +320,16 @@ kbd{
   margin-top: auto;
 }
 
-#cooking .timer-row{
-  margin-bottom: auto;
-  
-}
-
 /* Gap between cooking images */
 #cooking .section-media img + img{
   margin-top: 1rem;
 }
 
-#cooking .steps{
-  margin-top: auto;
-}
-
 .timer-row{
+  margin-top: 2rem;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 /* MODAL */
@@ -441,7 +378,14 @@ kbd{
   align-items: center;
   justify-content: center;
   gap: 12px;
+  cursor: grab;
+  user-select: none;
 }
+
+.modal-header:active{
+  cursor: grabbing;
+}
+
 .modal-header h3{
   margin: 0;
   font-size: 18px;
@@ -452,17 +396,6 @@ kbd{
   color: var(--muted);
   font-size: 13px;
 }
-
-/* Draggable modal affordance */
-.modal-header{
-  cursor: grab;
-  user-select: none;
-}
-
-.modal-header:active{
-  cursor: grabbing;
-}
-
 
 /* Timer panel: transparent */
 .timer-panel{
@@ -542,7 +475,9 @@ kbd{
 .timer-row{
   margin-top: 2rem;
 }
-  
+  .steps {
+	  padding: 1rem;
+  }
   .ingredients-panel{
 
   margin: 0rem 0rem;

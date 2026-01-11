@@ -385,17 +385,6 @@ function openModal() {
       }
     }
 
-    function openModal() {
-      lastFocus = document.activeElement;
-      overlay.hidden = false;
-      document.body.classList.add('no-scroll');
-      closeBtn.focus();
-
-      if (!keyListenerActive) {
-        window.addEventListener('keydown', onKeyDown);
-        keyListenerActive = true;
-      }
-    }
 
     function closeModal() {
       stopTimer();
