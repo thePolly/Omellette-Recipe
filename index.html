@@ -34,41 +34,50 @@
 
 			<div class="meta-section">
 			  <div class="ingredients-panel">
-			
-          <dl class="meta" aria-label="Recipe highlights">
-            <div>
-              <dt>⏱ Time</dt>
-              <dd>5–7 min</dd>
-            </div>
-            <div>
-              <dt>⚡ Difficulty</dt>
-              <dd>Easy</dd>
-            </div>
-            <div>
-              <dt>🍽 Serves</dt>
-              <dd>1</dd>
-            </div>
-			<div>
-              <dt>🔥 Calories</dt>
-              <dd>~220 kcal</dd>
-            </div>
-          </dl>
+<dl class="meta" aria-label="Recipe highlights">
+  <div>
+    <dt><span class="meta-icon">⏱</span> Time</dt>
+    <dd>5–7 min</dd>
+  </div>
+  <div>
+    <dt><span class="meta-icon">⚡</span> Difficulty</dt>
+    <dd>Easy</dd>
+  </div>
+  <div>
+    <dt><span class="meta-icon">👤</span> Serves</dt>
+    <dd>1</dd>
+  </div>
+  <div>
+    <dt><span class="meta-icon">🔥</span> Calories</dt>
+    <dd>~220 kcal</dd>
+  </div>
+</dl>
    
 		</div>
 	</div>
-	
-				    <p class="lead">
-            Soft, buttery, and fast. This is the “no drama” omelette: gentle heat, minimal stirring,
-            clean finish.
-          </p>
-	
+	<div class = "about-text">
+		<p>
+  Starting your day with an omelette is a simple and balanced choice.
+  It’s warm, filling, and quick to make, giving you real energy without feeling heavy or rushed.
+</p>
+
+<ul class="benefits">
+  <li><strong>Stable energy</strong> — protein helps keep energy levels steady</li>
+  <li><strong>Better focus</strong> — staying full helps you concentrate longer</li>
+  <li><strong>Muscle support</strong> — protein supports strength and recovery</li>
+  <li><strong>Lasting fullness</strong> — keeps you satisfied without slowing you down</li>
+</ul>
+
+<p>
+  Beyond nutrition, making an omelette is a small daily ritual.
+  A few quiet minutes of simple cooking help you slow down and start the day with intention.
+</p>
+
+</div>
       <figure class="section-media about-media">
           <img src="omelet.jpg" alt="A minimal, plated omelette on a white plate." />
         </figure>
-      		    <p class="lead">
-            Soft, buttery, and fast. This is the “no drama” omelette: gentle heat, minimal stirring,
-            clean finish.
-          </p>
+      	
         </div>
 
   
@@ -113,27 +122,45 @@
       <div class="section-grid">
         <div class="section-copy">
           <h2 id="cooking-title">Cooking</h2>
+<ol class="steps">
+  <li>
+    <strong class="step-title">Crack the eggs</strong>
+    <span class="step-desc">Tap each egg gently on a flat surface and open it into a bowl to avoid shell pieces.</span>
+  </li>
 
-    <ol class="steps">
   <li>
-    <strong class="step-title">Beat eggs smooth</strong>
-    <span class="step-desc">Salt first. A splash of milk is optional, softness is not.</span>
+    <strong class="step-title">Whisk lightly</strong>
+    <span class="step-desc">Mix just until the yolks and whites come together. No need to overbeat.</span>
   </li>
+
   <li>
-    <strong class="step-title">Warm pan gently</strong>
-    <span class="step-desc">Low to medium-low heat. Butter should foam, not brown.</span>
+    <strong class="step-title">Season early</strong>
+    <span class="step-desc">Add salt and pepper now so the eggs are evenly seasoned from the start.</span>
   </li>
+
   <li>
-    <strong class="step-title">Pour and stir</strong>
-    <span class="step-desc">Slow circles with a spatula until soft curds begin forming.</span>
+    <strong class="step-title">Heat the pan</strong>
+    <span class="step-desc">Use low to medium-low heat. The pan should be warm, not hot.</span>
   </li>
+
   <li>
-    <strong class="step-title">Shape and fold</strong>
-    <span class="step-desc">Push into an oval, add extras, fold cleanly in half.</span>
+    <strong class="step-title">Add butter</strong>
+    <span class="step-desc">Let it melt on the warm pan. It should foam gently, not brown.</span>
   </li>
+
   <li>
-    <strong class="step-title">Stop slightly early</strong>
-    <span class="step-desc">Glossy is good. Residual heat finishes the job.</span>
+    <strong class="step-title">Cook and stir</strong>
+    <span class="step-desc">Pour in the eggs and move them slowly with a spatula until soft curds form.</span>
+  </li>
+
+  <li>
+    <strong class="step-title">Fold the omelette</strong>
+    <span class="step-desc">When mostly set but still soft, fold it gently in half.</span>
+  </li>
+
+  <li>
+    <strong class="step-title">Serve and finish</strong>
+    <span class="step-desc">Slide onto a plate and sprinkle with fresh herbs of your choice.</span>
   </li>
 </ol>
 
@@ -226,6 +253,8 @@
     const restartBtn = document.getElementById('restartTimerBtn');
     const timerText = document.getElementById('timerText');
     const modalFill = document.getElementById('modalFill');
+	const modal = document.querySelector('#timerOverlay .modal');
+	const modalHeader = document.querySelector('#timerOverlay .modal-header');
 
     const DURATION_MS = 60_000;
     let startTime = 0;
@@ -233,6 +262,89 @@
     let lastFocus = null;
     let audioCtx = null;
     let keyListenerActive = false;
+	
+	let dragActive = false;
+let dragStartX = 0;
+let dragStartY = 0;
+let modalX = 0;
+let modalY = 0;
+
+function applyModalPosition() {
+  modal.style.transform = `translate3d(${modalX}px, ${modalY}px, 0)`;
+}
+
+function clamp(val, min, max) {
+  return Math.min(max, Math.max(min, val));
+}
+
+function onDragMove(e) {
+  if (!dragActive) return;
+
+  const dx = e.clientX - dragStartX;
+  const dy = e.clientY - dragStartY;
+
+  // Keep modal within viewport bounds (simple clamp)
+  const rect = modal.getBoundingClientRect();
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+
+  const nextX = modalX + dx;
+  const nextY = modalY + dy;
+
+  // estimate bounds based on current rect size
+  const maxX = (vw - rect.width) / 2 + (vw - rect.width) / 2; // symmetric margin; practical clamp below
+  const maxY = (vh - rect.height) / 2 + (vh - rect.height) / 2;
+
+  // practical clamp: allow a small margin so it doesn't get lost off-screen
+  const margin = 16;
+  const minClampX = -(rect.left - margin);
+  const maxClampX = (vw - rect.right) - margin;
+  const minClampY = -(rect.top - margin);
+  const maxClampY = (vh - rect.bottom) - margin;
+
+  modalX = clamp(nextX, modalX + minClampX, modalX + maxClampX);
+  modalY = clamp(nextY, modalY + minClampY, modalY + maxClampY);
+
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+
+  applyModalPosition();
+}
+
+function onDragEnd() {
+  dragActive = false;
+  window.removeEventListener('mousemove', onDragMove);
+  window.removeEventListener('mouseup', onDragEnd);
+}
+
+modalHeader.addEventListener('mousedown', (e) => {
+  // Only left mouse button
+  if (e.button !== 0) return;
+
+  dragActive = true;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+
+  window.addEventListener('mousemove', onDragMove);
+  window.addEventListener('mouseup', onDragEnd);
+});
+
+function openModal() {
+  lastFocus = document.activeElement;
+  overlay.hidden = false;
+  document.body.classList.add('no-scroll');
+  closeBtn.focus();
+
+  // reset drag position each open so it starts centered
+  modalX = 0;
+  modalY = 0;
+  applyModalPosition();
+
+  if (!keyListenerActive) {
+    window.addEventListener('keydown', onKeyDown);
+    keyListenerActive = true;
+  }
+}
 
     function formatMMSS(msRemaining) {
       const totalSeconds = Math.max(0, Math.ceil(msRemaining / 1000));

@@ -140,11 +140,19 @@ img{
 .section-copy h1{ font-size: clamp(28px, 4vw, 44px); line-height: 1.1; }
 .section-copy h2{ font-size: clamp(22px, 2.8vw, 30px); line-height: 1.2; }
 
-.lead{
-  margin: 0 0 18px;
-  color: #1a1a1a;
-  font-size: 16px;
-  max-width: 62ch;
+
+
+.about-text {
+	max-width: 90%;
+	margin: 1rem auto;
+}
+.benefits{
+  margin: 1rem 0;
+  padding-left: 1.25rem;
+}
+
+.benefits li{
+  margin-bottom: .4rem;
 }
 
 .meta-section {
@@ -152,13 +160,11 @@ img{
 }
 
 .meta{
-  width: 50%;
+  width: 70%;
   margin: 0.5rem auto;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  justify-items: center;               /* center each meta item */
+  display: flex;
+  justify-content: space-evenly;       /* center each meta item */
   text-align: center;                  /* center text inside */
-  gap: 12px;
 }
 .meta dt{
   font-size: 12px;
@@ -169,6 +175,13 @@ img{
   margin: 2px 0 0;
   font-weight: 550;
 }
+
+
+.meta-icon {
+  opacity: 0.65;      /* делает эмоджи «тише» */
+  margin-right: 6px; /* аккуратный отступ */
+}
+
 
 .note{
   margin: 10px 0 0;
@@ -245,7 +258,6 @@ img{
 }
 
 .steps{
-  margin: 14px 0 0 18px;
   padding: 0;
   display: grid;
   gap: 1rem;
@@ -268,15 +280,13 @@ img{
 }
 
 .timer-row{
-  margin-top: 18px;
-  display: grid;
-  gap: 10px;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Gap between cooking images */
-#cooking .section-media img + img{
-  margin-top: 1rem;
-}
+
 
 .btn{
   appearance: none;
@@ -355,6 +365,35 @@ kbd{
 }
 
 
+#cooking .section-copy{
+	height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+}
+#cooking .steps{
+  margin-top: auto;
+}
+
+#cooking .timer-row{
+  margin-bottom: auto;
+  
+}
+
+/* Gap between cooking images */
+#cooking .section-media img + img{
+  margin-top: 1rem;
+}
+
+#cooking .steps{
+  margin-top: auto;
+}
+
+.timer-row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* MODAL */
 .overlay{
@@ -413,6 +452,17 @@ kbd{
   color: var(--muted);
   font-size: 13px;
 }
+
+/* Draggable modal affordance */
+.modal-header{
+  cursor: grab;
+  user-select: none;
+}
+
+.modal-header:active{
+  cursor: grabbing;
+}
+
 
 /* Timer panel: transparent */
 .timer-panel{
@@ -482,8 +532,16 @@ kbd{
     grid-template-columns: 1fr;
   }
   .meta{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0rem auto;
   }
+
+.meta-section {
+    margin: 2rem 0rem;
+}
+
+.timer-row{
+  margin-top: 2rem;
+}
   
   .ingredients-panel{
 
